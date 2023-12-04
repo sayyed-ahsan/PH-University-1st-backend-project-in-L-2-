@@ -1,13 +1,9 @@
-import { Request, Response } from "express";
+import { Request, RequestHandler, Response } from "express";
 import { NextFunction } from "express";
 import { StudentServices } from "./student.service";
 // import { StudentValidationSchema } from "./student.ZodValidation";
 
-const getAllStudents = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const getAllStudents: RequestHandler = async (req, res, next) => {
   try {
     const data = await StudentServices.getAllStudentfromDB();
     res.setHeader("Content-Type", "application/json");
@@ -21,11 +17,7 @@ const getAllStudents = async (
   }
 };
 
-const getStudentByID = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const getStudentByID: RequestHandler = async (req, res, next) => {
   try {
     const studentDat = await StudentServices.gelStudentByIdfromDB(
       req.params._id
@@ -41,7 +33,7 @@ const getStudentByID = async (
   }
 };
 
-const createStuden = async (
+const createStuden: RequestHandler = async (
   req: Request,
   res: Response,
   next: NextFunction

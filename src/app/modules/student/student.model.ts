@@ -3,6 +3,12 @@ import { Student } from "./student.interface";
 
 const studentSchema = new Schema<Student>({
   id: { type: Number, required: true, unique: true },
+  user: {
+    type: Schema.Types.ObjectId,
+    required: [true, "User id is required"],
+    unique: true,
+    ref: "User",
+  },
   name: { type: String, required: true },
   age: { type: Number, required: true },
   gender: { type: String, enum: ["male", "female", "other"], required: true },
