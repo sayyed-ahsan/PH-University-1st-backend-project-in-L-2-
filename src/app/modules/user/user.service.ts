@@ -15,7 +15,7 @@ const createStudentIntoDB = async (password: string, studentData: Student) => {
   userData.role = "student";
 
   //set manually generated it
-  userData.id = "2030100001444";
+  userData.id = "2030100001666";
 
   // create a user
   const newUser = await User.create(userData);
@@ -23,8 +23,8 @@ const createStudentIntoDB = async (password: string, studentData: Student) => {
   //create a student
   if (Object.keys(newUser).length) {
     // set id , _id as user
-    studentData.id = newUser.id;
-    studentData.user = newUser._id; //reference _id
+    // studentData.id = newUser.id;
+    // studentData.user = newUser._id; //reference _id
 
     const newStudent = await StudentModel.create(studentData);
     return newStudent;

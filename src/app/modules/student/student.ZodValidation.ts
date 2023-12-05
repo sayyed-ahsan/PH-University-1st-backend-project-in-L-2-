@@ -16,15 +16,20 @@ const contactInfoSchema = z.object({
 
 // Define the main Zod schema for the student
 export const StudentValidationSchema = z.object({
-  id: z.number(),
-  name: z.string(),
-  age: z.number(),
-  gender: z.enum(["male", "female", "other"]),
-  grade: z.string(),
-  courses: z.array(z.string()),
-  isInternational: z.boolean(),
-  address: addressSchema,
-  contactInfo: contactInfoSchema,
+  body: z.object({
+    password: z.string().optional(),
+    student: z.object({
+      id: z.number(),
+      name: z.string(),
+      age: z.number(),
+      gender: z.enum(["male", "female", "other"]),
+      grade: z.string(),
+      courses: z.array(z.string()),
+      isInternational: z.boolean(),
+      address: addressSchema,
+      contactInfo: contactInfoSchema,
+    }),
+  }),
 });
 
 // You can use .parse() to transform and validate an object against the schema
