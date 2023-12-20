@@ -1,19 +1,17 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
-import { StudentRout } from "./app/modules/student/student.route";
-import globalErrorHandler from "./app/middelware/globalErroHandeler";
-import notFound from "./app/middelware/notFound";
-import { UserRoutes } from "./app/modules/user/user.route";
+import globalErrorHandler from "./app/middlewares/globalErrorHandler";
+import notFound from "./app/middlewares/notFound";
+import router from "./app/routes";
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 
-app.use("/api/v1/students", StudentRout);
-app.use("/api/v1/user", UserRoutes);
+app.use("/api/v1/", router);
 
 const getController = (req: Request, res: Response) => {
-  res.send(`Hello `);
+  res.send(`Hello`);
 };
 
 app.get("/", getController);
